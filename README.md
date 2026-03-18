@@ -136,12 +136,15 @@ python3 farm.py
 流程：
 
 生成视频
+
 ↓
 
 保存到 generated_videos
+
 ↓
 
 选择账号
+
 ↓
 
 上传 YouTube
