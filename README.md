@@ -137,10 +137,13 @@ python3 farm.py
 
 生成视频
 ↓
+
 保存到 generated_videos
 ↓
+
 选择账号
 ↓
+
 上传 YouTube
 
 日志示例：
