@@ -42,15 +42,24 @@ Project Structure
 
 video_farm/
 │
+
 ├── farm.py
+
 ├── upload.py
+
 ├── client_secret.json
+
 │
+
 ├── generated_videos/
+
 │
+
 ├── token_acc1.pickle
+
 ├── token_acc2.pickle
-│
+
+
 └── README.md
 
 Description of files:
