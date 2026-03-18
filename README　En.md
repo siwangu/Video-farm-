@@ -140,11 +140,17 @@ python3 farm.py
 Workflow:
 
 Generate video
+
 ↓
+
 Save to generated_videos
+
 ↓
+
 Select account
+
 ↓
+
 Upload to YouTube
 
 Example log:
