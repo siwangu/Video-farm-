@@ -1,216 +1,104 @@
-Video Farm
+import React from 'react';
+import { Terminal, Github, Video, Upload, Layers, CheckCircle, AlertTriangle } from 'lucide-react';
 
-Video Farm 是一个自动化视频生成与上传工具，用于批量生成视频并上传到 YouTube 频道。
+const VideoFarmDocs = () => {
+  return (
+    <div className="min-h-screen bg-slate-900 text-slate-200 p-8 font-sans">
+      {/* Header */}
+      <header className="max-w-4xl mx-auto border-b border-slate-700 pb-8 mb-12">
+        <div className="flex items-center gap-4 mb-4">
+          <div className="bg-indigo-500 p-3 rounded-xl">
+            <Video size={32} className="text-white" />
+          </div>
+          <h1 className="text-4xl font-bold tracking-tight text-white">Video Farm</h1>
+        </div>
+        <p className="text-xl text-slate-400">
+          自动化视频生成与 YouTube 多频道分发工具。
+        </p>
+      </header>
 
-该项目主要用于：
+      <main className="max-w-4xl mx-auto space-y-16">
+        
+        {/* Core Features - Grid Layout */}
+        <section>
+          <h2 className="text-2xl font-semibold mb-6 flex items-center gap-2 text-indigo-400">
+            <Layers size={24} /> 核心特性
+          </h2>
+          <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
+            {[
+              { title: "全自动生成", desc: "批量创建视频内容，支持 AI 流程对接。" },
+              { title: "多频道轮询", desc: "支持账号自动切换，规避单一频道限制。" },
+              { title: "状态追踪", desc: "实时记录上传状态与日志，便于维护。" },
+              { title: "跨平台支持", desc: "兼容 Termux, Linux, 和 macOS。" },
+            ].map((f, i) => (
+              <div key={i} className="bg-slate-800/50 p-4 rounded-lg border border-slate-700 hover:border-indigo-500 transition-colors">
+                <h3 className="font-bold text-slate-100">{f.title}</h3>
+                <p className="text-sm text-slate-400">{f.desc}</p>
+              </div>
+            ))}
+          </div>
+        </section>
 
-自动生成视频内容
+        {/* Project Structure - Tree View */}
+        <section>
+          <h2 className="text-2xl font-semibold mb-6 text-indigo-400">项目结构</h2>
+          <div className="bg-slate-950 p-6 rounded-lg font-mono text-sm border border-slate-800">
+            <div className="text-emerald-400">video_farm/</div>
+            <div className="pl-4 border-l border-slate-700 ml-2 space-y-1 mt-2">
+              <div>├── <span className="text-blue-400">farm.py</span> <span className="text-slate-500"># 主程序入口</span></div>
+              <div>├── <span className="text-blue-400">upload.py</span> <span className="text-slate-500"># YouTube 模块</span></div>
+              <div>├── <span className="text-amber-400">client_secret.json</span> <span className="text-slate-500"># OAuth 凭证</span></div>
+              <div>├── <span className="text-emerald-400">generated_videos/</span> <span className="text-slate-500"># 视频暂存区</span></div>
+              <div>└── <span className="text-slate-400 text-opacity-50">token_acc*.pickle # 授权令牌</span></div>
+            </div>
+          </div>
+        </section>
 
-自动上传视频
-
-多账号轮换上传
-
-自动化内容生产流程
-
-
-适用于在 Termux / Linux / macOS 等环境运行。
-
-
----
-
-Features
-
-自动生成视频
-
-自动上传到 YouTube
-
-支持多个频道
-
-自动轮换频道上传
-
-自动生成标题
-
-上传状态日志
-
-
-
----
-
-Project Structure
-
-video_farm/
-
-├── farm.py
-
-├── upload.py
-
-├── client_secret.json
-
-├── generated_videos/
-
-├── token_acc1.pickle
-
-├── token_acc2.pickle
-
-└── README.md
-
-说明：
-
-文件	作用
-
-farm.py	主程序，生成视频并上传
-upload.py	YouTube 上传模块
-client_secret.json	Google OAuth 凭证
-generated_videos	自动生成的视频
-token_acc1.pickle	频道1登录 token
-token_acc2.pickle	频道2登录 token
-
-
-
----
-
-Requirements
-
-Python 3.9+
-
-安装依赖：
-
-pip install google-api-python-client
-pip install google-auth-oauthlib
-
-Termux 用户：
-
-pkg install python
+        {/* Installation - Terminal Style */}
+        <section>
+          <h2 className="text-2xl font-semibold mb-6 flex items-center gap-2 text-indigo-400">
+            <Terminal size={24} /> 快速开始
+          </h2>
+          <div className="bg-black rounded-lg overflow-hidden border border-slate-700">
+            <div className="flex bg-slate-800 px-4 py-2 gap-2">
+              <div className="w-3 h-3 rounded-full bg-red-500"></div>
+              <div className="w-3 h-3 rounded-full bg-amber-500"></div>
+              <div className="w-3 h-3 rounded-full bg-emerald-500"></div>
+            </div>
+            <pre className="p-6 text-indigo-300 overflow-x-auto">
+              <code>{`# 安装依赖
 pip install google-api-python-client google-auth-oauthlib
 
-
----
-
-Setup
-
-1 获取 YouTube API
-
-打开：
-
-https://console.cloud.google.com/
-
-创建项目：
-
-启用
-
-YouTube Data API v3
-
-创建 OAuth Client ID
-
-下载：
-
-client_secret.json
-
-放入项目目录。
-
-
----
-
-2 账号授权
-
-第一次运行时会自动打开浏览器授权。
-
-python3 farm.py
-
-授权后会生成：
-
-token_acc1.pickle
-token_acc2.pickle
-
-以后不会再次要求登录。
-
-
----
-
-Running
-
-运行：
-
-python3 farm.py
-
-流程：
-
-生成视频
-
-↓
-
-保存到 generated_videos
-
-↓
-
-选择账号
-
-↓
-
-上传 YouTube
-
-日志示例：
-
-[INFO] Generated video video_A1B2C3.mp4
-[INFO] Uploaded video_A1B2C3.mp4 to acc1
-
-
----
-
-Multiple Channels
-
-在 farm.py 中配置：
-
-ACCOUNTS = ["acc1", "acc2"]
-
-系统会：
-
-视频1 → acc1
-视频2 → acc2
-视频3 → acc1
-视频4 → acc2
-
-循环上传。
-
-
----
-
-Custom Video Generation
-
-默认示例为简单视频生成。
-
-你可以替换：
-
-generate_video()
-
-使用：
-
-AI 视频生成
-
-图片转视频
-
-文本转视频
-
-自动剪辑
-
-
-实现自己的内容生产流程。
-
-
----
-
-Notes
-
-请确保 YouTube API 已启用
-
-账号需要拥有 YouTube 频道
-
-上传频率过高可能触发平台限制
-
-
-
----
-
-License
-
-MIT License
+# 首次运行 (根据提示进行 OAuth 授权)
+python3 farm.py`}</code>
+            </pre>
+          </div>
+        </section>
+
+        {/* Workflow Diagram Placeholder */}
+        <section className="bg-indigo-900/20 border border-indigo-500/30 rounded-2xl p-8 text-center">
+          <Upload className="mx-auto mb-4 text-indigo-400" size={48} />
+          <h3 className="text-xl font-bold mb-2 text-white">自动化工作流</h3>
+          <p className="text-slate-400 max-w-md mx-auto">
+            从本地生成视频文件，自动校验 Google Token，按照配置队列轮流推送到不同的 YouTube 频道。
+          </p>
+        </section>
+
+        {/* Warnings */}
+        <footer className="pt-12 border-t border-slate-800">
+          <div className="flex items-start gap-3 text-amber-400 bg-amber-950/30 p-4 rounded-lg">
+            <AlertTriangle className="shrink-0" size={20} />
+            <p className="text-sm text-amber-200/80">
+              请务必遵守 YouTube API 使用政策。高频上传可能会导致 API 配额限制或频道被封禁。
+            </p>
+          </div>
+          <div className="mt-8 text-center text-slate-500 text-sm italic">
+            Licensed under MIT License • Open source for automation
+          </div>
+        </footer>
+      </main>
+    </div>
+  );
+};
+
+export default VideoFarmDocs;
